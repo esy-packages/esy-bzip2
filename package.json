@@ -1,0 +1,16 @@
+{
+  "name": "esy-bzip2",
+  "version": "0.0.000",
+  "description": "bzip2 packaged for esy",
+  "esy": {
+    "buildsInSource": true,
+    "buildEnv": {
+      "TRIPLE": "#{os == 'windows' ? 'x86_64-W64-mingw32-': '' }"
+    },
+    "build": [
+      ["make", "install", "PREFIX=#{self.install}"]
+    ]
+  },
+  "dependencies": {},
+  "resolutions": {}
+}
