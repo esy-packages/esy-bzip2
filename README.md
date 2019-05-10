@@ -1,3 +1,4 @@
+[![Build Status](https://dev.azure.com/prometheansacrifice/esy-packages/_apis/build/status/prometheansacrifice.esy-bzip2?branchName=master)](https://dev.azure.com/prometheansacrifice/esy-packages/_build/latest?definitionId=26&branchName=master)
 
 This is the README for bzip2/libzip2.
 This version is fully compatible with the previous public releases.
