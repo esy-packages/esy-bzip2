@@ -7,6 +7,16 @@
     "buildEnv": {
       "TRIPLE": "#{os == 'windows' ? 'x86_64-W64-mingw32-': '' }"
     },
+    "exportedEnv": {
+      "LDFLAGS": {
+        "scope": "global",
+        "val": "-L#{self.lib} -lbz2 $LDFLAGS"
+      },
+      "CFLAGS": {
+        "scope": "global",
+        "val": "-I#{self.install / 'include'} $CFLAGS"
+      }
+    },  
     "build": [
       ["make", "install", "PREFIX=#{self.install}"]
     ]
