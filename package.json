@@ -4,9 +4,6 @@
   "description": "bzip2 packaged for esy",
   "esy": {
     "buildsInSource": true,
-    "buildEnv": {
-      "TRIPLE": "#{os == 'windows' ? 'x86_64-W64-mingw32-': '' }"
-    },
     "exportedEnv": {
       "LDFLAGS": {
         "scope": "global",
@@ -16,9 +13,17 @@
         "scope": "global",
         "val": "-I#{self.install / 'include'} $CFLAGS"
       }
-    },  
+    },
+    "buildEnv": {
+      "CC": "#{os == 'windows' ? 'x86_64-w64-mingw32-gcc.exe': 'gcc'}",
+      "TRIPLE": "#{os == 'windows' ? 'x86_64-W64-mingw32-': '' }",
+      "OS_LD_FLAGS": "#{os == 'darwin' ? '-install_name': '-soname'}"
+    },
     "build": [
-      ["make", "install", "PREFIX=#{self.install}"]
+      "make -f Makefile-libbz2_so",
+      "cp libbz2.so.1.0.6 bzip2-shared #{self.lib}",
+      "ln -s #{self.lib / 'libbz2.so.1.0.6'} #{self.lib / 'libbz2.so.1.0'}",
+      "make install PREFIX=#{self.install}"
     ]
   },
   "dependencies": {},
